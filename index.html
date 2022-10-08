@@ -260,7 +260,19 @@ class Solution:
       return max(helper(slices[1:]), helper(slices[:-1]))
 </pre>
 
-
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/paint-house/" target="_blank">https://leetcode.com/problems/paint-house/</a></p> 
+<pre>
+class Solution:
+  def minCost(self, costs: List[List[int]]) -> int:
+      n = len(costs)
+      dp = [[0] * 3 for _ in range(n + 1)]
+      
+      for i in range(1, n + 1):
+          for j in range(3):
+              dp[i][j] = min(dp[i - 1][(j + 1) % 3], dp[i - 1][(j + 2) % 3]) + costs[i - 1][j]
+                 
+      return min(dp[n])
+</pre>
 
 </div>
       </div>
