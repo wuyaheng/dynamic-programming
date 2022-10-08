@@ -226,6 +226,21 @@ class Solution:
       return max(dfs(root))
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/delete-and-earn/" target="_blank">https://leetcode.com/problems/delete-and-earn/</a></p> 
+<pre>
+class Solution:
+  def deleteAndEarn(self, nums: List[int]) -> int:
+      dp = [0] * 10005
+      
+      for x in nums:
+          dp[x] += x
+          
+      for i in range(2, 10001):
+          dp[i] = max(dp[i - 1], dp[i - 2] + dp[i])
+          
+      return dp[10000]
+</pre>
+
 
 
 </div>
