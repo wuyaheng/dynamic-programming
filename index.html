@@ -188,6 +188,46 @@ class Solution:
       return dp[n]
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/house-robber-ii/" target="_blank">https://leetcode.com/problems/house-robber-ii/</a></p> 
+<pre>
+class Solution:
+  def rob(self, nums: List[int]) -> int:
+      def helper(ls):
+          n = len(ls)
+          
+          dp = [0] * (n + 1)
+          dp[1] = ls[0]
+          
+          for i in range(2, n + 1):
+              dp[i] = max(dp[i - 1], dp[i - 2] + ls[i - 1])
+              
+          return dp[n]
+      
+      if len(nums) == 1: return nums[0]
+      return max(helper(nums[1:]), helper(nums[:-1]))
+</pre>
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/house-robber-iii/" target="_blank">https://leetcode.com/problems/house-robber-iii/</a></p> 
+<pre>
+class Solution:
+  def rob(self, root: Optional[TreeNode]) -> int:
+      def dfs(root):
+          if not root: return [0, 0]
+          
+          l, r = dfs(root.left), dfs(root.right)
+          
+          ans = [0, 0]
+          
+          ans[0] = max(l[0], l[1]) + max(r[0], r[1])
+          ans[1] = root.val + l[0] + r[0]
+          
+          return ans
+      
+      return max(dfs(root))
+</pre>
+
+
+
 </div>
       </div>
     </div>
