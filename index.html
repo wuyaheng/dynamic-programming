@@ -230,14 +230,14 @@ class Solution:
 <pre>
 class Solution:
   def deleteAndEarn(self, nums: List[int]) -> int:
-      dp = [0] * 10005
-      
+      dp = [0] * 10001
+
       for x in nums:
           dp[x] += x
-          
-      for i in range(2, 10001):
+      
+      for i in range(2, len(dp)):
           dp[i] = max(dp[i - 1], dp[i - 2] + dp[i])
-          
+      
       return dp[10000]
 </pre>
 
@@ -473,6 +473,41 @@ class Solution:
       return dp[n][0]
 </pre> 
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/count-ways-to-build-good-strings/" target="_blank">https://leetcode.com/problems/count-ways-to-build-good-strings/</a></p> 
+<pre>
+class Solution:
+  def countGoodStrings(self, low: int, high: int, zero: int, one: int) -> int:
+      MOD = 10 ** 9 + 7
+      ans = 0
+      dp = [0] * 100005
+      dp[0] = 1
+
+      for i in range(1, high + 1):
+          if i >= zero: dp[i] = dp[i] + dp[i - zero]
+          if i >= one: dp[i] = dp[i] + dp[i - one]
+          if i >= low: ans = ans + dp[i]
+
+      return ans % MOD
+</pre> 
+
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank">https://leetcode.com/problems/longest-palindromic-substring/</a></p> 
+<pre>
+class Solution:
+  def longestPalindrome(self, s: str) -> str:
+      n = len(s)
+      x, y = 0, 0
+      dp = [[False] * n for _ in range(n)]
+      
+      for i in range(n):
+          for j in range(i, -1, -1):
+              if s[j] == s[i] and (i - j <= 2 or dp[j + 1][i - 1]):
+                  dp[j][i] = True
+                  if i - j > y - x:
+                      x, y = j, i
+
+      return s[x: y + 1]
+</pre> 
+
 </div>
       </div>
     </div>
@@ -494,24 +529,15 @@ class Solution:
     <!-- Scripts --> 
 
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
-    <!-- Script for pocket button -->
+
     <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
-    <!-- Print friendly -->
+
     <script>var pfHeaderImgUrl = '';var pfHeaderTagline = '';var pfdisableClickToDel = 0;var pfHideImages = 0;var pfImageDisplayStyle = 'right';var pfDisablePDF = 0;var pfDisableEmail = 0;var pfDisablePrint = 0;var pfCustomCSS = '';var pfBtVersion='1';(function(){var js, pf;pf = document.createElement('script');pf.type = 'text/javascript';if ('https:' === document.location.protocol){js='https://pf-cdn.printfriendly.com/ssl/main.js'}else{js='http://cdn.printfriendly.com/printfriendly.js'}pf.src=js;document.getElementsByTagName('head')[0].appendChild(pf)})();</script>
-    <!-- Share button / http://sharebutton.co
-    <script src="https://cdn.rawgit.com/carrot/share-button/master/src/share-button.js"></script>-->
+
 
 
     <script>
-      /**
-      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-      /*
-      var disqus_config = function () {
-      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      };
-      */
+
       (function() { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
       s.src = 'https://wuyaheng.disqus.com/embed.js';
