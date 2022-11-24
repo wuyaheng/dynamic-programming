@@ -545,6 +545,30 @@ class Solution:
       return False
 </pre> 
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank">https://leetcode.com/problems/palindrome-partitioning/</a></p> 
+<pre>
+class Solution:
+  def partition(self, s: str) -> List[List[str]]:
+      def dfs(u, path):
+          if u == n:
+              ans.append(path[:])
+          for i in range(u,  n):
+              if dp[u][i]:
+                  dfs(i + 1, path + [s[u: i + 1]])
+
+      n = len(s)
+      dp = [[False] * n for _ in range(n)]
+
+      for i in range(n):
+          for j in range(i, -1, -1):
+              if s[i] == s[j] and (i - j <= 2 or dp[j + 1][i - 1]):
+                  dp[j][i] = True
+
+      ans = []
+      dfs(0, [])
+      return ans
+</pre> 
+
 </div>
       </div>
     </div>
