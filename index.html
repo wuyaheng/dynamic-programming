@@ -657,6 +657,20 @@ class Solution:
       return len(dp)
 </pre> 
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/increasing-triplet-subsequence/" target="_blank">https://leetcode.com/problems/increasing-triplet-subsequence/</a></p> 
+<pre>
+class Solution:
+  def increasingTriplet(self, nums: List[int]) -> bool:
+      dp = []
+
+      for x in nums:
+          p = bisect_left(dp, x)
+          if p == len(dp): dp.append(x)
+          else: dp[p] = x
+      
+      return len(dp) >= 3
+</pre> 
+
 </div>
       </div>
     </div>
