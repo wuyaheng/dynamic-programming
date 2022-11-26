@@ -714,6 +714,20 @@ class Solution:
       return len(dp)
 </pre> 
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/maximum-length-of-pair-chain/" target="_blank">https://leetcode.com/problems/maximum-length-of-pair-chain/</a></p> 
+<pre>
+class Solution:
+  def findLongestChain(self, pairs: List[List[int]]) -> int:
+      pairs.sort(key = lambda x: (x[1], x[0]))
+      dp = []
+
+      for x in pairs:
+          if not dp or dp[-1][1] < x[0]: dp.append(x)
+      
+      return len(dp)
+</pre> 
+
+
 </div>
       </div>
     </div>
