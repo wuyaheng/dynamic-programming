@@ -986,6 +986,22 @@ class Solution:
       return dp[-1]
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/partition-equal-subset-sum/" target="_blank">https://leetcode.com/problems/partition-equal-subset-sum/</a></p> 
+<pre>
+class Solution:
+  def canPartition(self, nums: List[int]) -> bool:
+      @cache
+      def dp(u, s):
+          if u == len(nums):
+              return s == tol // 2
+          if s > tol // 2: return False 
+
+          return dp(u + 1, s + nums[u]) or dp(u + 1, s)
+
+      tol = sum(nums)
+      if tol % 2 == 1: return False
+      return dp(0, 0)
+</pre>
 
 </div>
       </div>
