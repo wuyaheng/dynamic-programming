@@ -1095,6 +1095,22 @@ class Solution:
       return False
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/" target="_blank">https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/</a></p> 
+<pre>
+class Solution:
+  def minimizeTheDifference(self, mat: List[List[int]], target: int) -> int:
+      dp = set(mat[0])
+
+      for i in range(1, len(mat)):
+          nxt = set()
+          for x in mat[i]:
+              for pre in dp:
+                  nxt.add(x + pre)
+          dp = nxt
+
+      return min(abs(x - target) for x in dp)
+</pre>
+
 </div>
       </div>
     </div>
