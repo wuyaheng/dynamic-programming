@@ -1041,6 +1041,21 @@ class Solution:
       return dp[V]
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/last-stone-weight-ii/" target="_blank">https://leetcode.com/problems/last-stone-weight-ii/</a></p> 
+<pre>
+class Solution:
+  def lastStoneWeightII(self, stones: List[int]) -> int:
+      tol = sum(stones)
+      V = tol // 2
+      dp = [0] * (V + 1)
+
+      for x in stones:
+          for i in range(V, x - 1, -1):
+              dp[i] = max(dp[i], dp[i - x] + x)
+      
+      return tol - 2 * dp[V]
+</pre>
+
 </div>
       </div>
     </div>
