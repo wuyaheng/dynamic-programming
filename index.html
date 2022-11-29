@@ -1022,6 +1022,25 @@ class Solution:
       return dp[V]
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/target-sum/" target="_blank">https://leetcode.com/problems/target-sum/</a></p> 
+<pre>
+class Solution:
+  def findTargetSumWays(self, nums: List[int], target: int) -> int: 
+      n = len(nums)
+      tol = sum(nums)
+      if tol < target or (tol - target) % 2 == 1: return 0
+
+      V = (tol - target) // 2
+      dp = [0] * (V + 1)
+      dp[0] = 1
+
+      for x in nums:
+          for i in range(V, x - 1, -1):
+              dp[i] += dp[i - x]
+
+      return dp[V]
+</pre>
+
 </div>
       </div>
     </div>
