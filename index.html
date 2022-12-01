@@ -1175,6 +1175,28 @@ class Solution:
       return dp(startRow, startColumn, maxMove)
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/cherry-pickup/" target="_blank">https://leetcode.com/problems/cherry-pickup/</a></p> 
+<pre>
+class Solution:
+  def cherryPickup(self, grid: List[List[int]]) -> int:
+      @cache
+      def dp(i, j, x, y):
+          if i == j == n - 1: return grid[i][j]
+          cur = grid[i][j] + grid[x][y]
+          if i == x and j == y: cur //= 2
+          
+          ans = -inf
+          for ni, nj in [(i + 1, j), (i, j + 1)]:
+              if ni < n and nj < n and grid[ni][nj] != -1:
+                  for nx, ny in [(x + 1, y), (x, y + 1)]:
+                      if nx < n and ny < n and grid[nx][ny] != -1:
+                          ans = max(ans, cur + dp(ni, nj, nx, ny))
+          return ans
+
+      n = len(grid)
+      return max(0, dp(0, 0, 0, 0))
+</pre>
+
 </div>
       </div>
     </div>
