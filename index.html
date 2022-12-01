@@ -1158,6 +1158,22 @@ class Solution:
       return min(grid[-1])
 </pre>
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/out-of-boundary-paths/" target="_blank">https://leetcode.com/problems/out-of-boundary-paths/</a></p> 
+<pre>
+class Solution:
+  def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
+      @cache
+      def dp(i, j, k):
+          if not (0 <= i < m and 0 <= j < n): return 1
+          if k == 0: return 0
+          ans = 0
+          for ni, nj in [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]:
+              ans = (ans + dp(ni, nj, k - 1)) % MOD
+          return ans
+          
+      MOD = 10 ** 9 + 7
+      return dp(startRow, startColumn, maxMove)
+</pre>
 
 </div>
       </div>
