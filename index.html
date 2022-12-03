@@ -508,6 +508,32 @@ class Solution:
       return s[x: y + 1]
 </pre> 
 
+<p class="text-center text-muted"><a href="https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/" target="_blank">https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/</a></p> 
+<pre>
+class Solution:
+  def maxPalindromes(self, s: str, k: int) -> int:
+      n = len(s)
+      t = []
+      dp = [[False] * n for _ in range(n)]
+
+      for i in range(n):
+          for j in range(i, -1, -1):
+              if s[i] == s[j] and (i - j <= 2 or dp[j + 1][i - 1]):
+                  dp[j][i] = True
+                  if i - j + 1 >= k: t.append([j, i])
+      
+      ans = 0
+      r = -inf
+
+      for x, y in t:
+          if x > r: 
+              r = y
+              ans += 1
+          else:
+              r = min(r, y)
+      return ans
+</pre> 
+
 <p class="text-center text-muted"><a href="https://leetcode.com/problems/palindromic-substrings/" target="_blank">https://leetcode.com/problems/palindromic-substrings/</a></p> 
 <pre>
 class Solution:
